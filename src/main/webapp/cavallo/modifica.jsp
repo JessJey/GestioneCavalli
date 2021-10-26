@@ -1,6 +1,8 @@
 <!doctype html>
 <%@page import="it.prova.gestionecavalli.model.Cavallo"%>
 <%@page import="java.text.SimpleDateFormat"%>
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <html lang="it" class="h-100" >
 	 <head>
 	 
@@ -43,32 +45,30 @@
 		
 							<form method="post" action="ExecuteModificaCavalloServlet" class="row g-3" novalidate="novalidate">
 							
-								<% Cavallo cavalloInPagina = (Cavallo)request.getAttribute("modifica_cavallo_attr"); %>
-								
-									<input type="hidden" name="idArticolo" value="<%=cavalloInPagina.getId() %>">
+									<input type="hidden" name="idCavallo" value="${modifica_cavallo_attr.id}">
 							
 								<div class="col-md-6">
 									<label for="nome" class="form-label">Nome <span class="text-danger">*</span></label>
 									<input type="text" name="nome" id="nome" class="form-control" placeholder="Inserire il nome"  
-										value="<%=cavalloInPagina.getNome()!=null?cavalloInPagina.getNome():"" %>" required>
+										value="${modifica_cavallo_attr.nome}" required>
 								</div>
 								
 								<div class="col-md-6">
 									<label for="razza" class="form-label">Razza <span class="text-danger">*</span></label>
 									<input type="text" name="razza" id="razza" class="form-control" placeholder="Inserire la razza"  
-										value="<%=cavalloInPagina.getRazza()!=null?cavalloInPagina.getRazza():"" %>" required>
+										value="${modifica_cavallo_attr.razza}" required>
 								</div>
 							
 								<div class="col-md-6">
 									<label for="prezzo" class="form-label">Prezzo <span class="text-danger">*</span></label>
 									<input type="number" class="form-control" name="prezzo" id="prezzo" placeholder="Inserire prezzo" 
-									value="<%=cavalloInPagina.getPrezzo()!=null?cavalloInPagina.getPrezzo():"" %>" required>
+									value="${modifica_cavallo_attr.prezzo}" required>
 								</div>
 								
 								<div class="col-md-3">
 									<label for="datadinascita" class="form-label">Data di Nascita<span class="text-danger">*</span></label>
 									<input class="form-control"  name="datadinascita" id="datadinascita" type="date" placeholder="dd/MM/yy" title="formato : gg/mm/aaaa" 
-										value="<%=cavalloInPagina.getDataDiNascita()!=null? new SimpleDateFormat("yyyy-MM-dd").format(cavalloInPagina.getDataDiNascita()):""  %>" required/>
+										value="${modifica_cavallo_attr.dataDiNascita}" required/>
 								</div>
 								
 								

@@ -22,7 +22,7 @@ public class ExecuteVisualizzaCavalloServlet extends HttpServlet {
 
 		if (!NumberUtils.isCreatable(idCavalloParam)) {
 			// qui ci andrebbe un messaggio nei file di log costruito ad hoc se fosse attivo
-			request.setAttribute("errorMessage", "Attenzione si è verificato un errore.");
+			request.setAttribute("errorMessage", "Attenzione si è verificato un errore id.");
 			request.getRequestDispatcher("/index.jsp").forward(request, response);
 			return;
 		}

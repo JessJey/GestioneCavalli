@@ -43,32 +43,30 @@
 		
 							<form method="post" action="ExecuteInsertCavalloServlet" class="row g-3" novalidate="novalidate">
 							
-								<% Cavallo cavalloInPagina = (Cavallo)request.getAttribute("insert_cavallo_attr"); %>
-							
+								
 								<div class="col-md-6">
 									<label for="nome" class="form-label">Nome <span class="text-danger">*</span></label>
 									<input type="text" name="nome" id="nome" class="form-control" placeholder="Inserire il nome"  
-										value="<%=cavalloInPagina.getNome()!=null?cavalloInPagina.getNome():"" %>" required>
+										value="${insert_cavallo_attr.nome}" required>
 								</div>
 								
 								<div class="col-md-6">
 									<label for="razza" class="form-label">Razza <span class="text-danger">*</span></label>
 									<input type="text" name="razza" id="razza" class="form-control" placeholder="Inserire la razza"  
-										value="<%=cavalloInPagina.getRazza()!=null?cavalloInPagina.getRazza():"" %>" required>
+										value="${insert_cavallo_attr.razza}" required>
 								</div>
 							
 								<div class="col-md-6">
 									<label for="prezzo" class="form-label">Prezzo <span class="text-danger">*</span></label>
 									<input type="number" class="form-control" name="prezzo" id="prezzo" placeholder="Inserire prezzo" 
-									value="<%=cavalloInPagina.getPrezzo()!=null?cavalloInPagina.getPrezzo():"" %>" required>
+									value="${insert_cavallo_attr.prezzo}" required>
 								</div>
 								
 								<div class="col-md-3">
 									<label for="datadinascita" class="form-label">Data di Nascita<span class="text-danger">*</span></label>
 									<input class="form-control"  name="datadinascita" id="datadinascita" type="date" placeholder="dd/MM/yy" title="formato : gg/mm/aaaa" 
-										value="<%=cavalloInPagina.getDataDiNascita()!=null? new SimpleDateFormat("yyyy-MM-dd").format(cavalloInPagina.getDataDiNascita()):""  %>" required/>
+										value="${insert_cavallo_attr.dataDiNascita}" required/>
 								</div>
-								
 								
 							<div class="col-12">
 								<button type="submit" name="submit" value="submit" id="submit" class="btn btn-primary">Conferma</button>

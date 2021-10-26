@@ -1,6 +1,8 @@
 <!doctype html>
 <%@page import="it.prova.gestionecavalli.model.Cavallo"%>
 <%@page import="java.text.SimpleDateFormat"%>
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <html lang="it" class="h-100" >
 	 <head>
 	 
@@ -36,35 +38,37 @@
 					    <div class='card-header'>
 					        <h5>Visualizza cavallo da rimuovere</h5>
 					    </div>
-					     <% Cavallo cavalloInPagina = (Cavallo)request.getAttribute("delete_cavallo_attr"); %>
 					    
 					    <div class='card-body'>
 					    	<dl class="row">
-							  <dt class="col-sm-3 text-right">Nome</dt>
-							  <dd class="col-sm-9"><%=cavalloInPagina.getNome() %></dd>
+					    	
+					    	<dt class="col-sm-3 text-right">Nome: </dt>
+							  <c:out value="${delete_cavallo_attr.nome}"/>
 					    	</dl>
 					    	
 					    	<dl class="row">
 							  <dt class="col-sm-3 text-right">Razza:</dt>
-							  <dd class="col-sm-9"><%=cavalloInPagina.getRazza() %></dd>
+							   <c:out value="${delete_cavallo_attr.razza}"/>
 					    	</dl>
 					    	
 					    	<dl class="row">
 							  <dt class="col-sm-3 text-right">Prezzo:</dt>
-							  <dd class="col-sm-9"><%=cavalloInPagina.getPrezzo() %></dd>
+ 								<c:out value="${delete_cavallo_attr.prezzo}"/>	
 					    	</dl>
 					    	
 					    	<dl class="row">
 							  <dt class="col-sm-3 text-right">Data di Nascita:</dt>
-							  <dd class="col-sm-9"><%=cavalloInPagina.getDataDiNascita()!=null? new SimpleDateFormat("dd/MM/yyyy").format(cavalloInPagina.getDataDiNascita()):"N.D."  %></dd>
+							 <fmt:formatDate value="${delete_cavallo_attr.dataDiNascita}"  pattern="dd/MM/yyyy" var="datanascita"/>
+					    	<c:out value="${datanascita}"></c:out>
 					    	</dl>
+
 					    	
 					    </div>
 					    
 					    <div class='card-footer'>
 					        
 					        <form action="ExecuteDeleteCavalloServlet" method="post">
-								<input type="hidden" name="idCavallo" value="<%=cavalloInPagina.getId() %>">
+								<input type="hidden" name="idCavallo" value="${delete_cavallo_attr.id}">
 								<button type="submit" class='btn btn-outline-danger' style='width:90px' >Cancella</button>
 								<a href="ListCavalliServlet" class='btn btn-outline-secondary' style='width:80px'>
 					            	<i class='fa fa-chevron-left'></i> Back

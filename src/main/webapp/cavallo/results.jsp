@@ -1,6 +1,9 @@
 <%@page import="it.prova.gestionecavalli.model.Cavallo"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.util.List"%>
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
 <%@page pageEncoding="UTF-8" contentType="text/html; charset=UTF-8"%>
 <!doctype html>
 <html lang="it" class="h-100" >
@@ -61,21 +64,22 @@
 				                    </tr>
 				                </thead>
 				                <tbody>
-				                	<% List<Cavallo> listaCavalli = (List<Cavallo>)request.getAttribute("listaCavalliAttribute");
-				                		for(Cavallo item:listaCavalli){ %>
-				                    <tr >
-				                        <td><%=item.getId() %></td>
-				                        <td><%=item.getNome() %></td>
-				                        <td><%=item.getRazza() %></td>
-				                        <td><%=item.getPrezzo() %></td>
-				                        <td><%=item.getDataDiNascita()!=null? new SimpleDateFormat("dd/MM/yyyy").format(item.getDataDiNascita()):"N.D."%></td>
-				                        <td>
-											<a class="btn  btn-sm btn-outline-secondary" href="ExecuteVisualizzaCavalloServlet?idCavallo=<%=item.getId() %>">Visualizza</a>
-											<a class="btn  btn-sm btn-outline-primary ml-2 mr-2" href="PrepareModificaCavalloServlet?idCavallo=<%=item.getId() %>">Edit</a>
-											<a class="btn btn-outline-danger btn-sm" href="PrepareDeleteCavalloServlet?idCavallo=<%=item.getId() %>">Delete</a>
+				                <c:forEach var="listaCavalli" items="${listaCavalliAttribute}">
+	                     			   <tr>
+                     				    <td>${listaCavalli.id}</td>
+   	               				        <td>${listaCavalli.nome}</td>
+   	               				        <td>${listaCavalli.razza}</td>
+   	               				        <td>${listaCavalli.prezzo}</td>
+   	               				      <fmt:formatDate value="${listaCavalli.dataDiNascita}" pattern="dd/MM/yyyy" var="datanascita"/>
+				                        <td>${datanascita}</td>
+   	               				         <td>
+											<a class="btn  btn-sm btn-outline-secondary" href="ExecuteVisualizzaCavalloServlet?idCavallo=${listaCavalli.id}">Visualizza</a>
+											<a class="btn  btn-sm btn-outline-primary ml-2 mr-2" href="PrepareModificaCavalloServlet?idCavallo=${listaCavalli.id}">Edit</a>
+											<a class="btn btn-outline-danger btn-sm" href="PrepareDeleteCavalloServlet?idCavallo=${listaCavalli.id}">Delete</a>
 										</td>
-				                    </tr>
-				                    <% } %>
+                   					   </tr>
+                  					  </c:forEach>
+				                	
 				                    
 				                </tbody>
 				            </table>
